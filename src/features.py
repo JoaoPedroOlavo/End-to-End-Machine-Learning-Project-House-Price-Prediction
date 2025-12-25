@@ -9,15 +9,18 @@ NUMERIC_FEATURES = [
     "OpenPorchSF"
 ]
 
-ORDINAL_FEATURES = [
-    "OverallQual",
-    "OverallCond",
+ORDINAL_CATEGORICAL_FEATURES = [
     "ExterQual",
     "ExterCond",
     "KitchenQual",
     "HeatingQC",
     "GarageQual",
     "GarageCond"
+]
+
+ORDINAL_NUMERIC_FEATURES = [
+    "OverallQual",
+    "OverallCond"
 ]
 
 NOMINAL_FEATURES = [
@@ -41,3 +44,4 @@ TEMPORAL_DERIVED_FEATURES = [
 ]
 
 NUMERIC_FEATURES = NUMERIC_FEATURES + TEMPORAL_DERIVED_FEATURES
+NUMERIC_FEATURES = NUMERIC_FEATURES + ORDINAL_NUMERIC_FEATURES
