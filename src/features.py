@@ -34,3 +34,10 @@ TEMPORAL_FEATURES = [
     "YearRemodAdd",
     "YrSold"
 ]
+
+TEMPORAL_DERIVED_FEATURES = [
+    "PropertyAge",
+    "YearsSinceRemodel"
+]
+
+NUMERIC_FEATURES = NUMERIC_FEATURES + TEMPORAL_DERIVED_FEATURES
