@@ -101,8 +101,31 @@ performance and superior stability across cross-validation folds.
 
 ---
 
-## Future Improvements
-- Hyperparameter optimization
-- Model persistence and inference pipeline
-- Feature importance and explainability (e.g. SHAP)
-- API deployment for real-time predictions
+## API — Model Inference Service
+
+A REST API was implemented using **FastAPI** to expose the trained machine
+learning pipeline for real-time inference.
+
+The API reuses the persisted preprocessing + model pipeline, ensuring full
+consistency between training and prediction.
+
+### Key Characteristics
+- No retraining during inference
+- Strict feature name consistency with training data
+- Automatic input validation using Pydantic
+- JSON-based request/response
+- Interactive API documentation (Swagger UI)
+
+---
+
+## Running the API
+
+From the project root directory, activate the virtual environment and run:
+
+```bash
+uvicorn api.main:app --reload
+
+Once running, the API will be available at:
+
+Health check: http://127.0.0.1:8000/
+Swagger UI: http://127.0.0.1:8000/docs
