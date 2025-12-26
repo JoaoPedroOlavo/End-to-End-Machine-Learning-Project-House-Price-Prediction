@@ -2,6 +2,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, FunctionTransformer
 from sklearn.impute import SimpleImputer
+from src.preprocessing_utils import cast_to_string
 
 from src.features import (
     NUMERIC_FEATURES,
@@ -17,23 +18,24 @@ def build_numeric_pipeline():
 
 def build_ordinal_pipeline():
     ordinal_categories = [
-        ["Po", "Fa", "TA", "Gd", "Ex"],  # ExterQual
-        ["Po", "Fa", "TA", "Gd", "Ex"],  # ExterCond
-        ["Po", "Fa", "TA", "Gd", "Ex"],  # KitchenQual
-        ["Po", "Fa", "TA", "Gd", "Ex"],  # HeatingQC
-        ["Po", "Fa", "TA", "Gd", "Ex"],  # GarageQual
-        ["Po", "Fa", "TA", "Gd", "Ex"],  # GarageCond
+        ["Po", "Fa", "TA", "Gd", "Ex"],
+        ["Po", "Fa", "TA", "Gd", "Ex"],
+        ["Po", "Fa", "TA", "Gd", "Ex"],
+        ["Po", "Fa", "TA", "Gd", "Ex"],
+        ["Po", "Fa", "TA", "Gd", "Ex"],
+        ["Po", "Fa", "TA", "Gd", "Ex"],
     ]
 
     return Pipeline(steps=[
         ("imputer", SimpleImputer(strategy="most_frequent")),
-        ("to_str", FunctionTransformer(lambda x: x.astype(str))),
+        ("to_str", FunctionTransformer(cast_to_string)),
         ("encoder", OrdinalEncoder(
             categories=ordinal_categories,
             handle_unknown="use_encoded_value",
             unknown_value=-1
         ))
     ])
+
 
 def build_nominal_pipeline():
     return Pipeline(steps=[
